@@ -13,7 +13,7 @@ class CardBottomButtonsWidget extends StatelessWidget {
           builder: (_) {
             return RaisedButtonCustomWidget(
               icon: Icons.delete_outline,
-              onPressed: _.delete(_.post.id),
+              onPressed: _.delete(_.pokemon.id),
               text: 'Delete',
             );
           },
@@ -22,7 +22,7 @@ class CardBottomButtonsWidget extends StatelessWidget {
           builder: (_) {
             return RaisedButtonCustomWidget(
               icon: Icons.edit,
-              onPressed: _.editar(_.post),
+              onPressed: _.editar(_.pokemon),
               text: 'Editar',
             );
           },

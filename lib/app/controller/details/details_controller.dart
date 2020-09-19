@@ -8,11 +8,11 @@ class DetailsController extends GetxController {
   final MyRepository repository;
   DetailsController({@required this.repository}) : assert(repository != null);
 
-  final _post = PokemonModel().obs;
-  get post => this._post.value;
-  set post(value) => this._post.value = value;
+  final _pokemon = PokemonModel().obs;
+  get pokemon => this._pokemon.value;
+  set pokemon(value) => this._pokemon.value = value;
 
-  editar(post){
+  editar(pokemon){
     print('editar');
   }
   delete(id){

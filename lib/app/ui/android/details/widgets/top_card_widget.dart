@@ -11,7 +11,7 @@ class CardTopCustomWidget extends StatelessWidget {
       body: Container(
         padding: EdgeInsets.all(16),
         child: GetX<DetailsController>(
-          builder: (_)=> Text(_.post.title, style: cardTextStyle,),
+          builder: (_)=> Text(_.pokemon.name, style: cardTextStyle),
         ),
       ),
     );

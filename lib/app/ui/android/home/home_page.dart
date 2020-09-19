@@ -14,7 +14,7 @@ class HomePage extends GetView<HomeController> {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(ConstsApp.bg_home),
+          image: AssetImage(ConstsApp.bg_home2),
           fit: BoxFit.cover,
         ),
       ),
@@ -29,7 +29,7 @@ class HomePage extends GetView<HomeController> {
                 Container(height: statusHeight),
                 Container(
                   color: (Color.fromRGBO(255, 255, 255, 0.1)),
-                  height: 150,
+                  height: 100,
                   width: double.infinity,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -38,7 +38,7 @@ class HomePage extends GetView<HomeController> {
                       Text(
                         "Pokedex",
                         style: TextStyle(
-                            fontSize: 70,
+                            fontSize: 30,
                             color: (Color.fromRGBO(255, 255, 255, 0.7))),
                       ),
                       Image.asset("assets/images/pb.png"),
@@ -50,7 +50,7 @@ class HomePage extends GetView<HomeController> {
                     child: GetX<HomeController>(initState: (state) {
                       Get.find<HomeController>().getAll();
                     }, builder: (_) {
-                      return _.postList.length < 1
+                      return _.pokemonList.length < 1
                           ? LoadingWidget()
                           : AnimationLimiter(
                               child: GridView.builder(
@@ -59,30 +59,31 @@ class HomePage extends GetView<HomeController> {
                                 addAutomaticKeepAlives: true,
                                 gridDelegate:
                                     new SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 3,
+                                  crossAxisCount: 2,
                                 ),
                                 itemBuilder: (context, index) {
                                   return AnimationConfiguration.staggeredGrid(
                                     position: index,
                                     duration: const Duration(milliseconds: 375),
-                                    columnCount: 3,
+                                    columnCount: 2,
                                     child: ScaleAnimation(
                                       child: GestureDetector(
                                         child: Padding(
                                           padding: const EdgeInsets.all(6.0),
                                           child: GridPokemonItem(
-                                            index: _.postList[index].num,
-                                            name: _.postList[index].name,
-                                            image: _.getImage(_.postList[index].num,),
+                                            index: _.pokemonList[index].num,
+                                            name: _.pokemonList[index].name,
+                                            num: _.pokemonList[index].num,
+                                            type: _.pokemonList[index].type,
                                           ),
                                         ),
                                         onTap: () =>
-                                            _.details(_.postList[index]),
+                                            _.details(_.pokemonList[index]),
                                       ),
                                     ),
                                   );
                                 },
-                                itemCount: _.postList.length,
+                                itemCount: _.pokemonList.length,
                               ),
                             );
                     }),
@@ -92,7 +93,6 @@ class HomePage extends GetView<HomeController> {
             ),
           ],
         ),
-        bottomNavigationBar: navBottom,
       ),
     );
   }
